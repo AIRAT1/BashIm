@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.google.android.gms.ads.AdRequest
@@ -55,7 +54,6 @@ class QuotesActivity : AppCompatActivity(){
                         .subscribe({ result ->
                                 list.addAll(result)
                             recyclerView.adapter = QuotesAdapter(list)
-                            Log.d(tag, list.toString())
                         })
         )
     }
