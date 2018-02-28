@@ -18,7 +18,7 @@ interface BashImApiService {
             ): io.reactivex.Observable<List<Quote>>
 
     @GET("api/sources")
-    fun searchSources(): io.reactivex.Observable<List<SourceOfQuotes>>
+    fun searchSources(): io.reactivex.Observable<List<List<SourceOfQuotes>>>
 
     companion object Factory{
         fun create() : BashImApiService {

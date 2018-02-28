@@ -6,7 +6,7 @@ class SearchRepositoty(val apiService: BashImApiService) {
         return apiService.searchQuotes(site, name, 50)
     }
 
-    fun searchSpurcesOfQuotes() : io.reactivex.Observable<List<SourceOfQuotes>> {
+    fun searchSourcesOfQuotes() : io.reactivex.Observable<List<List<SourceOfQuotes>>> {
         return apiService.searchSources()
     }
 }
