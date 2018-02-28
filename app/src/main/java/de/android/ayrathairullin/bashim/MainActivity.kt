@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), ChangeSourceListener {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice(TEST_DEVICE_ID)
                 .build()
-//        adView.loadAd(adRequest)
+        adView.loadAd(adRequest)
 
         val llm = LinearLayoutManager(this)
         llm.orientation = LinearLayoutManager.VERTICAL
