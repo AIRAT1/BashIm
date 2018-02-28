@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import de.android.ayrathairullin.bashim.data.SearchRepositoryProvider
 import de.android.ayrathairullin.bashim.data.SearchRepositoty
 import de.android.ayrathairullin.bashim.data.SourceOfQuotes
@@ -16,6 +18,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 const val tag: String = "MainActivity"
+const val TEST_DEVICE_ID: String = "30D9300605DD60CE60905D4B3C11B63F"
 
 class MainActivity : AppCompatActivity(), ChangeSourceListener {
     override fun sourceChanged(position: Int) {
@@ -28,6 +31,10 @@ class MainActivity : AppCompatActivity(), ChangeSourceListener {
 
     @BindView(R.id.recyclerView)
     lateinit var recyclerView : RecyclerView
+
+    @BindView(R.id.banner)
+    lateinit var adView : AdView
+
     val compositeDisposable : CompositeDisposable = CompositeDisposable()
     val repository : SearchRepositoty = SearchRepositoryProvider.provideSearchRepository()
     lateinit var adapter : SourceOfQuotesAdapter
@@ -37,6 +44,13 @@ class MainActivity : AppCompatActivity(), ChangeSourceListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
+
+        val adRequest: AdRequest = AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(TEST_DEVICE_ID)
+                .build()
+        adView.loadAd(adRequest)
+
         val llm = LinearLayoutManager(this)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
